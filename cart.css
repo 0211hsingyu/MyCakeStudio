@@ -1,0 +1,347 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Noto Sans TC", sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    color: rgb(145, 145, 145);
+    background-color: rgb(240, 240, 240);
+    font-size: 13px;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+button {
+    font-family: inherit;
+    border: none;
+    cursor: pointer;
+}
+
+/* <!-- ========HEADER=========== --> */
+.header {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* LOGO */
+.header-inner {
+    position: absolute;
+    left: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.logo img {
+    width: 300px;
+}
+
+
+/* 導覽列 */
+.nav {
+    display: flex;
+    gap: 40px;
+}
+
+.nav a {
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.nav a:hover {
+    color: #bd8585;
+}
+
+/* 右邊icon */
+.header-icon {
+    position: absolute;
+    right: 45px;
+    display: flex;
+    gap: 25px;
+}
+
+.header-icon a {
+    font-size: 27px;
+    transition: 0.3s;
+}
+
+.header-icon a:hover {
+    color: #bd8585;
+}
+/* <!-- ========MAIN & CHECKOUT=========== --> */
+.checkout{
+    max-width: 1200px;
+    margin: 40px auto 80px;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    gap: 80px;
+}
+.checkout-form{
+    flex: 1;
+    max-width: 480px;
+}
+.order-summary{
+    flex: 1;
+    max-width: 520px;
+}
+/* 標題樣式 */
+.form-section h2, .order-summary h2{
+    font-size: 16px;
+    font-weight: 550;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+}
+.form-section h2 span{
+    font-size: 15px;
+    margin-right: 4px;
+}
+.form-section{
+    margin-bottom: 35px;
+}
+/* 表單元件輸入 */
+.form-group{
+    margin-bottom: 20px;
+}
+.form-group label{
+    display: block;
+    font-size: 13px;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+    padding-left: 10px; 
+}
+.form-group input, .select-box select{
+width: 100%;
+height: 28px;
+padding: 0 16px;
+border: none;
+background-color: rgb(220 220 220);
+border-radius: 20px;
+color: rgb(100, 100, 100);
+outline: none;
+}
+.form-group input:focus{
+    background-color: rgb(215 215 215);
+}
+/* 付款方式 / 發票類型 */
+.form-row{
+    display: flex;
+    gap: 20px;
+}
+.form-row .form-group{
+    flex: 1;
+}
+/* 自訂下拉式選單 */
+.select-box {
+    position: relative;
+}
+
+.select-box select {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+.select-box::after {
+    content: "\f107";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    pointer-events: none;
+    font-size: 14px;
+}
+
+/* 日期輸入框樣式 */
+input[type="date"] {
+    position: relative;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+}
+
+.date-group .input-icon {
+    position: relative;
+}
+
+.date-group .input-icon::after {
+    content: "\f133";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 400;
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #777;
+    pointer-events: none;
+    font-size: 15px;
+}
+
+/* 門市提醒 */
+.pickup-notice{
+    background-color: #dadada;
+    padding: 20px;
+    border-radius: 20px;
+    margin-top: 25px;
+    font-size: 12px;
+    line-height: 1.8;
+    color: #bd8585;
+}
+.pickup-notice h3{
+    font-weight: 550;
+    margin-bottom: 6px;
+}
+/* <!-- ========ORDER SUMMARY=========== --> */
+.order-product{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 300px;
+    position: relative;
+}
+.product-image{
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.product-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 45%;
+}
+.product-info{
+    flex: 1;
+}
+.product-info h3{
+    font-weight:550;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+.product-info p{
+    font-size: 12px;
+    color: #999;
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+.product-note{
+    color: #aaa;
+    font-size: 12px;
+}
+.product-price{
+    font-size: 16px;
+    font-weight: 600;
+    color: #bd8585;
+    letter-spacing: 0.5px;
+    align-self: flex-start;
+    padding-top: 5px;
+}
+/* 分隔線與金額 */
+.summary-line{
+    height: 1px;
+    background-color: #ccc;
+    margin: 30px 0;
+}
+.summary-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+    margin-bottom: 30px;
+}
+.summary-item strong{
+    font-size: 18px;
+    color: #bd8585;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+.summary-item.total {
+    margin-bottom: 40px;
+}
+.summary-item.total strong{
+    font-size: 22px;
+}
+/* 確認送出按鈕 */
+.submit-btn{
+    width: 100%;
+    height: 48px;
+    background-color: #bd8585;
+    color: white;
+    border-radius: 25px;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    transition:all 0.2s ease;
+}
+.submit-btn:hover {
+     background-color: #a86f6f;
+    transform: scale(1.05);
+}
+.submit-btn:active {
+    transform: scale(0.96);
+}
+/* <!-- ========FOOTER=========== --> */
+footer {
+    padding: 10px 20px;
+    background-color: rgb(180, 180, 180);
+    color: white;
+    font-size: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    position: relative;
+}
+
+footer p {
+    margin: 0;
+
+    /* 固定在整個 footer 正中央 */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+footer div {
+    display: flex;
+    gap: 25px;
+}
+
+footer div a {
+    color: rgb(110, 100, 100);
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

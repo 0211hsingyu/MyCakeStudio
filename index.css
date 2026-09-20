@@ -1,0 +1,359 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Noto Sans TC", sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    color: rgb(145, 145, 145);
+    background-color: rgb(240, 240, 240);
+    font-size: 13px;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+button {
+    font-family: inherit;
+    border: none;
+    cursor: pointer;
+}
+
+/* <!-- ========HEADER=========== --> */
+.header {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* LOGO */
+.header-inner {
+    position: absolute;
+    left: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.logo img {
+    width: 300px;
+}
+
+
+/* 導覽列 */
+.nav {
+    display: flex;
+    gap: 40px;
+}
+
+.nav a {
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.nav a:hover {
+    color: #bd8585;
+}
+
+/* 右邊icon */
+.header-icon {
+    position: absolute;
+    right: 45px;
+    display: flex;
+    gap: 25px;
+}
+
+.header-icon a {
+    font-size: 27px;
+    transition: 0.3s;
+}
+
+.header-icon a:hover {
+    color: #bd8585;
+}
+ /* <!-- ========HERO=========== --> */
+ .hero{
+    height: 260px;
+    background-image: url(./assortment-pieces-cake.jpg);
+    background-size: cover;
+    background-position: center 34%;
+    position: relative;
+ }
+
+ /* 左邊文字 */
+ .hero-content{
+    position: absolute;
+    left: 6%;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+ }
+.hero-content h2{
+    font-size: 19px;
+    line-height: 1.5;
+    color: #bd8585;
+    font-weight: 500;
+}
+.hero-line{
+    width: 200px;
+    height: 1px;
+    background-color: #bd8585;
+    margin: 12px auto;
+}
+.hero-content p{
+    font-size: 12px;
+    line-height: 1.7;
+    color: #bd8585;
+    margin-bottom: 20px;
+}
+
+/* 按鈕 */
+.btn{
+    padding: 10px 25px;
+    border-radius: 25px;
+    background-color: #bd8585;
+    color: white;
+    font-size: 14px;
+    transition:all 0.2s ease;
+}
+.btn:hover{
+    background-color: #a86f6f;
+    transform: scale(1.05);
+}
+.btn:active{
+    transform: scale(0.96);
+}
+
+/* <!-- ========共用section=========== --> */
+.section{
+    width: 100%;
+    padding: 70px 10%;
+}
+
+/* <!-- ========ABOUT=========== --> */
+.about{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 330px;
+}
+
+/* 左邊文字 */
+.about-text{
+    width: 40%;
+}
+.about-text h2{
+    font-size: 18px;
+    color: #bd8585;
+    margin-bottom: 30px;
+    font-weight: 550;
+}
+
+.about-text p{
+    font-size: 13px;
+    line-height: 2;
+}
+
+/* 按鈕 */
+.small-btn{
+    margin-top: 20px;
+    padding: 8px 20px;
+    border-radius: 20px;
+    background-color: #bd8585;
+    color: white;
+    font-size: 13px;
+    float: right;
+    transition:all 0.2s ease;
+}
+.small-btn:hover{
+    background-color: #a86f6f;
+    transform: scale(1.05);
+}
+.small-btn:active {
+    transform: scale(0.96);
+}
+/* 右邊圖片 */
+.about-image{
+    width: 480px;
+    flex-shrink: 0;
+}
+.about-image img{
+   width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+/* <!-- ========PROCESS=========== --> */
+.section-title {
+    width: 100%;
+    height: 40px;
+
+    background-color: #bd8585;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 80px;
+}
+
+.section-title h2 {
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 5px;
+    margin: 0;
+}
+
+/* 四個流程 */
+.process-list{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+.process-item{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+/* 圓圈 */
+.circle{
+    width: 150px;
+    height: 150px;
+    border: 3px solid #c9c9c9;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: rgb(145, 145, 145);
+}
+/* 選擇設計預覽訂購 */
+.circle span{
+    font-size: 14px;
+}
+.circle i{
+    font-size: 30px;
+    color: rgb(145, 145, 145);
+}
+/* 箭頭 */
+.arrow{
+    flex: 0 0 auto;
+    margin: 0 10px;
+    font-size: 35px;
+    font-weight: bold;
+    color: #c9c9c9;
+}
+
+/* <!-- ========OCCASION=========== --> */
+.section-heading{
+    text-align: center;
+    margin-bottom: 40px;
+}
+.section-heading h2{
+    font-size: 18px;
+    color: #bd8585;
+    font-weight: 550;
+}
+
+/* 蛋糕排列 */
+.cake-track{
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+.cake-card{
+    width: 230px;
+    height: 180px;
+    position: relative;
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+.cake-card img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.cake-title{
+    position: absolute;
+    left: 0;
+    bottom:0;
+    width: 100%;
+    text-align: center;
+    padding: 12px 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    color: white;
+}
+
+/* <!-- ========LOCATION=========== --> */
+.location{
+    text-align: center;
+}
+.location-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    margin-bottom: 30px;
+}
+.map iframe{
+    width: 550px;
+    height: 350px;
+    border-radius: 15px;
+}
+.address{
+    text-align: left;
+    font-size: 13px;
+    line-height: 2;
+}
+
+/* <!-- ========FOOTER=========== --> */
+footer {
+    padding: 10px 20px;
+    background-color: rgb(180, 180, 180);
+    color: white;
+    font-size: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    position: relative;
+}
+
+footer p {
+    margin: 0;
+
+    /* 固定在整個 footer 正中央 */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+footer div {
+    display: flex;
+    gap: 25px;
+}
+
+footer div a {
+    color: rgb(110, 100, 100);
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

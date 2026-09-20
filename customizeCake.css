@@ -1,0 +1,409 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Noto Sans TC", sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    color: rgb(145, 145, 145);
+    background-color: rgb(240, 240, 240);
+    font-size: 13px;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+button {
+    font-family: inherit;
+    border: none;
+    cursor: pointer;
+}
+
+/* <!-- ========HEADER=========== --> */
+.header {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* LOGO */
+.header-inner {
+    position: absolute;
+    left: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.logo img {
+    width: 300px;
+}
+
+
+/* 導覽列 */
+.nav {
+    display: flex;
+    gap: 40px;
+}
+
+.nav a {
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.nav a:hover {
+    color: #bd8585;
+}
+
+/* 右邊icon */
+.header-icon {
+    position: absolute;
+    right: 45px;
+    display: flex;
+    gap: 25px;
+}
+
+.header-icon a {
+    font-size: 27px;
+    transition: 0.3s;
+}
+
+.header-icon a:hover {
+    color: #bd8585;
+}
+
+/* <!-- ========MAIN=========== --> */
+.customize-cake {
+    width: 100%;
+    max-width: 1100px;
+    min-height: calc(100vh - 160px);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 35px 60px 45px;
+}
+
+/* 蛋糕預覽 */
+.cake-preview {
+    position: relative;
+    min-height: 430px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cake-preview h2,
+.customize-options h2 {
+    font-size: 14px;
+    font-weight: 550;
+    letter-spacing: 2px;
+}
+
+/* 預覽圖片 */
+.cake-image {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 30px;
+}
+
+.cake-image img {
+    width: 290px;
+    max-width: 80%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+.customize-options {
+    padding-left: 20px;
+    padding-right: 5px;
+}
+
+.customize-options h2 {
+    margin-bottom: 27px;
+}
+
+/* 每個選項 */
+.option-group {
+    margin-bottom: 18px;
+}
+
+/* 選項標題 */
+.option-title {
+    display: flex;
+    align-items: center;
+    width: 102px;
+    flex-shrink: 0;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+
+.option-title span:first-child {
+    margin-right: 7px;
+}
+
+.option-title label {
+    white-space: nowrap;
+}
+
+/* 讓標題和選項在同一列 */
+.option-group {
+    display: flex;
+    align-items: flex-start;
+}
+
+/* radio */
+.option-item {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    gap: 22px;
+}
+
+/* 影藏原本的radio */
+.redio-option input,
+.radio-option input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* 自訂 */
+.radio-circle {
+    display: inline-block;
+    flex-shrink: 0;
+    width: 11px;
+    height: 11px;
+    border: 1px solid #999;
+    border-radius: 50%;
+    margin-right: 8px;
+    background-color: transparent;
+    position: relative;
+}
+
+.radio-option {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.radio-option input:checked+.radio-circle {
+    border-color: #999;
+}
+
+.radio-option input:checked+.radio-circle::after {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: #bd8585;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* 尺寸 */
+
+.option-item .redio-option span:last-child {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 人數文字 */
+.option-item small {
+    display: block;
+    margin-top: 1px;
+    font-size: 300;
+}
+/* 蛋糕口味 */
+.option-group:nth-of-type(2) .option-item{
+    gap: 25px;
+}
+/* 蛋糕風格 */
+.style-options{
+    gap: 24px;
+    align-items: flex-start;
+}
+.style-options .radio-option{
+    display: flex;
+    flex-wrap: wrap;
+    width: 70px;
+    position: relative;
+}
+/* 文字 */
+.style-options .radio-circle {
+    flex-shrink: 0;
+}
+
+.style-options .radio-option > span:nth-of-type(2) {
+    line-height: 11px;
+}
+
+/* 蛋糕顏色 */
+.color-options{
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 22px;
+    row-gap: 12px;
+    max-width: 280px;
+}
+.color-options .radio-option{
+    min-width: 55px;
+}
+/* 顏色小圓點 */
+.color-dot{
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    margin-left: 5px;
+}
+/* 顏色 */
+.color-dot.white{
+    background-color: white;
+    border: 1px solid #ddd;
+}
+.color-dot.pink{
+    background-color: #e8c7e8;
+}
+.color-dot.blue {
+    background-color: #add8ee;
+}
+
+.color-dot.purple {
+    background-color: #d9c0f5;
+}
+
+.color-dot.yellow {
+    background-color: #fff49a;
+}
+/* 蛋糕文字 */
+.text-option{
+    position: relative;
+    flex-wrap: wrap;
+    margin-top: 3px;
+}
+/* 文字選擇 */
+.text-choice{
+    display: flex;
+    gap: 22px;
+}
+.text-input{
+    width: 100%;
+    margin-left: 102px;
+    margin-top: 7px;
+    position: relative;
+}
+.text-input span{
+    position: absolute;
+    top: 7px;
+    left: 10px;
+    z-index: 2;
+    font-size: 8px;
+    color: #777;
+}
+/* 輸入框 */
+.text-input textarea{
+    width: 248px;
+    height: 41px;
+    resize: none;
+    border: none;
+    outline: none;
+    background-color: #dedede;
+    padding: 20px 10px 5px;
+    font-size: 12px;
+    color: #777;
+}
+.text-input textarea:focus {
+    background-color: #d8d8d8;
+}
+/* <!-- ========購物車=========== --> */
+.cart-area{
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 102px;
+}
+/* 總計 */
+.total-price{
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #bd8585;
+}
+.total-price span{
+    margin-left: 4px;
+    letter-spacing: 1.5px;
+}
+/* 加入購物車 */
+.add-cart{
+    width: 100px;
+    height: 32px;
+    border: none;
+    border-radius: 15px;
+    background-color: #bd8585;
+    color: white;
+    transition:all 0.2s ease;
+}
+.add-cart:hover {
+    background-color: #a86f6f;
+    transform: scale(1.05);
+}
+
+.add-cart:active {
+    transform: scale(0.96);
+}
+/* <!-- ========FOOTER=========== --> */
+footer {
+    padding: 10px 20px;
+    background-color: rgb(180, 180, 180);
+    color: white;
+    font-size: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    position: relative;
+}
+
+footer p {
+    margin: 0;
+
+    /* 固定在整個 footer 正中央 */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+footer div {
+    display: flex;
+    gap: 25px;
+}
+
+footer div a {
+    color: rgb(110, 100, 100);
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cake Studio</title>
+    <!-- 字體 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="./customizeCake.css">
+
+</head>
+
+<body>
+    <!-- ========HEADER=========== -->
+    <header class="header">
+        <div class="header-inner">
+            <a href="./index.html" class="logo">
+                <img src="./logo.png" alt="My Cake Studio">
+            </a>
+        </div>
+
+        <nav class="nav">
+            <a href="./index.html">首頁</a>
+            <a href="./customizeCake.html">客製化蛋糕</a>
+            <a href="./about.html">關於My Cake</a>
+            <a href="./news.html">最新動態</a>
+        </nav>
+
+        <div class="header-icon">
+            <a href="./member.html">
+                <i class="fa-regular fa-user"></i>
+            </a>
+            <a href="./cart.html">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
+        </div>
+    </header>
+    <!-- ========客製化蛋糕內容=========== -->
+    <main class="customize-cake">
+        <!-- 左側蛋糕預覽 -->
+        <section class="cake-preview">
+            <h2>預覽圖片</h2>
+            <div class="cake-image">
+                <img src="./蛋糕客製化.png" alt="蛋糕預覽">
+            </div>
+        </section>
+        <!-- 右側客製化 -->
+        <section class="customize-options">
+            <h2>客製化選項</h2>
+            <!-- 蛋糕尺寸 -->
+            <div class="option-group">
+                <div class="option-title">
+                    <span>①</span>
+                    <label>蛋糕尺寸:</label>
+                </div>
+                <div class="option-item">
+                    <label class="radio-option">
+                        <input type="radio" name="cake-size" value="4" checked>
+                        <span class="radio-circle"></span>
+                        <span>
+                            4吋
+                            <small>約2-4人</small>
+                        </span>
+                    </label>
+
+                    <label class="radio-option">
+                        <input type="radio" name="cake-size" value="6">
+                        <span class="radio-circle"></span>
+                        <span>
+                            6吋
+                            <small>約4-6人</small>
+                        </span>
+                    </label>
+
+                    <label class="radio-option">
+                        <input type="radio" name="cake-size" value="8">
+                        <span class="radio-circle"></span>
+                        <span>
+                            8吋
+                            <small>約6-10人</small>
+                        </span>
+                    </label>
+                </div>
+            </div>
+            <!-- ② 蛋糕口味 -->
+            <div class="option-group">
+                <div class="option-title">
+                    <span>②</span>
+                    <label>蛋糕口味:</label>
+                </div>
+                <div class="option-item">
+                    <label class="radio-option">
+                        <input type="radio" name="cake-flavor" value="巧克力" checked>
+                        <span class="radio-circle"></span>
+                        <span>
+                            巧克力
+                        </span>
+                    </label>
+
+                    <label class="radio-option">
+                        <input type="radio" name="cake-flavor" value="抹茶">
+                        <span class="radio-circle"></span>
+                        <span>
+                            抹茶
+                        </span>
+                    </label>
+
+                    <label class="radio-option">
+                        <input type="radio" name="cake-flavor" value="原味">
+                        <span class="radio-circle"></span>
+                        <span>
+                            原味
+                        </span>
+                    </label>
+
+                    <label class="radio-option">
+                        <input type="radio" name="cake-flavor" value="草莓">
+                        <span class="radio-circle"></span>
+                        <span>草莓</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- ③ 蛋糕風格 -->
+            <div class="option-group">
+                <div class="option-title">
+                    <span>③</span>
+                    <label>蛋糕風格:</label>
+                </div>
+                <div class="option-item style-options">
+                    <label class="radio-option">
+                        <input type="radio" name="cake-style" value="簡約" checked>
+                        <span class="radio-circle"></span>
+                        <span>
+                            簡約
+                        </span>
+                        <span class="style-icon"><img src="./icon4-01.png" alt=""></span>
+                    </label>
+
+                    <label class="radio-option">
+                        <input type="radio" name="cake-style" value="可愛">
+                        <span class="radio-circle"></span>
+                        <span>
+                            可愛
+                        </span>
+                        <span class="style-icon"><img src="./icon2-01.png" alt=""></span>
+                    </label>
+
+                    <label class="radio-option">
+                        <input type="radio" name="cake-style" value="花朵">
+                        <span class="radio-circle"></span>
+                        <span>
+                            花朵
+                        </span>
+                        <span class="style-icon"><img src="./icon3-01.png" alt=""></span>
+                    </label>
+
+                    <label class="radio-option">
+                        <input type="radio" name="cake-style" value="生日">
+                        <span class="radio-circle"></span>
+                        <span>
+                            生日
+                        </span>
+                        <span class="style-icon"><img src="./icon1-01.png" alt=""></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- ④ 蛋糕顏色 -->
+            <div class="option-group">
+                <div class="option-title">
+                    <span>④</span>
+                    <label>蛋糕顏色:</label>
+                </div>
+                <div class="option-item color-options">
+                    <label class="radio-option">
+                        <input type="radio" name="cake-color" value="白色" checked>
+                        <span class="radio-circle"></span>
+                        <span>
+                            白色
+                        </span>
+                        <span class="color-dot white"></span>
+                    </label>
+
+                    <label class="radio-option">
+                        <input type="radio" name="cake-color" value="粉色">
+                        <span class="radio-circle"></span>
+                        <span>
+                            粉色
+                        </span>
+                        <span class="color-dot pink"></span>
+                    </label>
+
+                    <label class="radio-option">
+                        <input type="radio" name="cake-color" value="藍色">
+                        <span class="radio-circle"></span>
+                        <span>
+                            藍色
+                        </span>
+                        <span class="color-dot blue"></span>
+                    </label>
+
+                    <label class="radio-option">
+                        <input type="radio" name="cake-color" value="紫色">
+                        <span class="radio-circle"></span>
+                        <span>
+                            紫色
+                        </span>
+                        <span class="color-dot purple"></span>
+                    </label>
+
+                    <label class="radio-option">
+                        <input type="radio" name="cake-color" value="黃色">
+                        <span class="radio-circle"></span>
+                        <span>
+                            黃色
+                        </span>
+                        <span class="color-dot yellow"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- ⑤ 蛋糕文字 -->
+            <div class="option-group text-option">
+                <div class="option-title">
+                    <span>⑤</span>
+                    <label>蛋糕文字:</label>
+                </div>
+                <div class="text-choice">
+                    <label class="radio-option">
+                        <input type="radio" name="cake-text" value="指定文字" checked>
+                        <span class="radio-circle"></span>
+                        <span>
+                            指定文字
+                        </span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="cake-text" value="不要文字">
+                        <span class="radio-circle"></span>
+                        <span>不要文字</span>
+                    </label>
+                </div>
+                <div class="text-input">
+                    <textarea name="cake-message" maxlength="25" placeholder="(25字以內)"></textarea>
+                </div>
+            </div>
+            <!-- 價格 / 加入購物車 -->
+            <div class="cart-area">
+                <div class="total-price">
+                    總計
+                    <span>NT$ 880</span>
+                </div>
+                <button type="button" class="add-cart">
+                    加入購物車
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- ========FOOTER=========== -->
+    <footer>
+        <p>&copy;2026 All Rights Reserved by My Cake Studio
+        </p>
+        <div>
+            <a href="#">隱私權政策</a>
+            <a href="#">Back to Top</a>
+        </div>
+    </footer>
+</body>
+
+</html>
