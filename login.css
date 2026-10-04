@@ -1,0 +1,266 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Noto Sans TC", sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    color: rgb(145, 145, 145);
+    background-color: rgb(240, 240, 240);
+    font-size: 13px;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+button {
+    font-family: inherit;
+    border: none;
+    cursor: pointer;
+}
+
+/* <!-- ========HEADER=========== --> */
+.header {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* LOGO */
+.header-inner {
+    position: absolute;
+    left: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.logo img {
+    width: 300px;
+}
+
+
+/* 導覽列 */
+.nav {
+    display: flex;
+    gap: 40px;
+}
+
+.nav a {
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.nav a:hover {
+    color: #bd8585;
+}
+
+/* 右邊icon */
+.header-icon {
+    position: absolute;
+    right: 45px;
+    display: flex;
+    gap: 25px;
+}
+
+.header-icon a {
+    font-size: 27px;
+    transition: 0.3s;
+}
+
+.header-icon a:hover {
+    color: #bd8585;
+}
+/* <!-- ========LOGIN=========== --> */
+.login{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    padding-bottom: 70px;
+}
+/* 標題 */
+.login h1{
+    text-align: center;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 55px 0 48px;
+    letter-spacing: 5px;
+}
+/* <!-- ========LOGIN FORM=========== --> */
+.login-form{
+    width: 410px;
+}
+.form-group{
+    margin-bottom: 19px;
+}
+/* 欄位文字 */
+.form-group label{
+    display: block;
+    margin-bottom: 9px;
+    padding-left: 9px;
+    letter-spacing: 3px;
+    font-size: 13px;
+}
+.form-group input{
+    width: 100%;
+    height: 30px;
+    padding: 0 15px;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    background-color: rgb(220 ,220 ,220);
+    color: rgb(100, 100, 100);
+    font-size: 12px;
+}
+.form-group input:focus{
+    background-color: rgb(215, 215, 215);
+}
+/* 按鈕 */
+.login-btn{
+    width: 100%;
+    height: 31px;
+    margin-top: 10px;
+    border-radius: 20px;
+    background-color: #bd8585;
+    color: white;
+    letter-spacing: 4px;
+    font-size: 13px;
+    transition: all 0.2s ease;
+}
+.login-btn:hover{
+    background-color: #a86f6f;
+    transform: scale(1.05);
+}
+.login-btn:active{
+    transform: scale(0.96);
+}
+/* 保持登入 */
+.remember{
+    display: flex;
+    align-items: center;
+    margin-top: 19px;
+    margin-left: 10px;
+}
+.remember input{
+    width: 19px;
+    height: 19px;
+    margin: 0 12px 0 0;
+    padding: 0;
+     appearance: none;
+    -webkit-appearance: none;
+    border: none;
+    border-radius: 6px;
+    background-color: rgb(220, 220, 220);
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+}
+.remember input:hover{
+    background-color: rgb(210, 210, 210);
+}
+/* checkbox 勾選 */
+.remember input:checked{
+    background-color: #bd8585;
+}
+.remember input:checked::after{
+    content: "✓";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-53%);
+    color: white;
+    font-size: 13px;
+    line-height: 1;
+}
+
+/* 保持登入文字 */
+.remember label{
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+/* <!-- ========註冊=========== --> */
+.login-links{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 55px;
+    margin-top: 27px;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+.login-links a{
+    color: #7fa0d0;
+    transition: 0.3s;
+}
+.login-links a:hover{
+    color: #bd8585;
+}
+.login-links i{
+    margin-right: 5px;
+    color: rgb(120, 120, 120);
+    font-size: 11px;
+}
+/* <!-- ========條款=========== --> */
+.terms{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    margin-top: 25px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+.terms a{
+    color: #7fa0d0;
+    transition: 0.3s;
+}
+.terms a:hover{
+    color: #bd8585;
+}
+/* <!-- ========FOOTER=========== --> */
+footer {
+    padding: 10px 20px;
+    background-color: rgb(180, 180, 180);
+    color: white;
+    font-size: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    position: relative;
+}
+
+footer p {
+    margin: 0;
+
+    /* 固定在整個 footer 正中央 */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+footer div {
+    display: flex;
+    gap: 25px;
+}
+
+footer div a {
+    color: rgb(110, 100, 100);
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

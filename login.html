@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cake Studio</title>
+    <!-- 字體 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="./login.css">
+
+</head>
+
+<body>
+    <!-- ========HEADER=========== -->
+    <header class="header">
+        <div class="header-inner">
+            <a href="./index.html" class="logo">
+                <img src="./logo.png" alt="My Cake Studio">
+            </a>
+        </div>
+
+        <nav class="nav">
+            <a href="./index.html">首頁</a>
+            <a href="./customizeCake.html">客製化蛋糕</a>
+            <a href="./about.html">關於My Cake</a>
+            <a href="./news.html">最新動態</a>
+        </nav>
+
+        <div class="header-icon">
+            <a href="./member.html">
+                <i class="fa-regular fa-user"></i>
+            </a>
+            <a href="./cart.html">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
+        </div>
+    </header>
+    <!-- ========LOGIN=========== -->
+    <main class="login">
+        <h1>會員登入</h1>
+        <form class="login-form">
+            <div class="form-group">
+                <label for="email">電子郵件</label>
+                <input type="email" id="email" name="email" autocomplete="email">
+            </div>
+
+            <div class="form-group">
+                <label for="password">密碼</label>
+                <input type="password" id="password" name="password" autocomplete="current-password">
+            </div>
+
+            <button type="submit" class="login-btn">會員登入</button>
+            <!-- 保持登入 -->
+            <div class="remember">
+                <input type="checkbox" id="remember" name="remember">
+                <label for="remember">保持登入</label>
+            </div>
+
+            <!-- 忘記密碼/註冊 -->
+            <div class="login-links">
+                <a href="#" class="forgot-password">
+                    <i class="fa-solid fa-lock"></i>
+                    忘記密碼
+                </a>
+                
+                <a href="./member.html" class="register-link">
+                    <i class="fa-regular fa-user"></i>
+                    註冊新會員
+                </a>
+            </div>
+            <!-- 條款 -->
+             <div class="terms">
+                <span>註冊表示同意</span>
+                <a href="#">商店服務條款</a>
+                <span>與</span>
+                <a href="#">會員責任規範及個資聲明</a>
+             </div>
+        </form>
+    </main>
+    <!-- ========FOOTER=========== -->
+    <footer>
+        <p>&copy;2026 All Rights Reserved by My Cake Studio
+        </p>
+        <div>
+            <a href="#">隱私權政策</a>
+            <a href="#">Back to Top</a>
+        </div>
+    </footer>
+</body>
+
+</html>

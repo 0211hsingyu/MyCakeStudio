@@ -1,0 +1,407 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Noto Sans TC", sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    color: rgb(145, 145, 145);
+    background-color: rgb(240, 240, 240);
+    font-size: 13px;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+button {
+    font-family: inherit;
+    border: none;
+    cursor: pointer;
+}
+
+/* ======== HEADER =========== */
+.header {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.header-inner {
+    position: absolute;
+    left: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.logo img {
+    width: 300px;
+}
+
+.nav {
+    display: flex;
+    gap: 40px;
+}
+
+.nav a {
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.nav a:hover {
+    color: #bd8585;
+}
+
+.header-icon {
+    position: absolute;
+    right: 45px;
+    display: flex;
+    gap: 25px;
+}
+
+.header-icon a {
+    font-size: 27px;
+    transition: 0.3s;
+}
+
+.header-icon a:hover {
+    color: #bd8585;
+}
+
+/* ======== MAIN =========== */
+.customize-cake {
+    width: 100%;
+    max-width: 1100px;
+    min-height: calc(100vh - 160px);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 35px 60px 45px;
+}
+
+/* 蛋糕預覽區 */
+.cake-preview {
+    position: relative;
+    min-height: 430px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cake-preview h2,
+.customize-options h2 {
+    font-size: 14px;
+    font-weight: 550;
+    letter-spacing: 2px;
+}
+
+.cake-preview h2 {
+    transform: translateX(-50px);
+}
+
+.preview {
+    width: 100%;
+    max-width: 320px;
+    margin: 70px auto 0;
+    transform: translateX(-50px);
+}
+
+/* 客製化選項區 */
+.customize-options {
+    padding-left: 20px;
+    padding-right: 5px;
+}
+
+.customize-options h2 {
+    margin-bottom: 27px;
+}
+
+.option-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.option-group:first-of-type,
+.option-group:nth-of-type(3) {
+    align-items: flex-start;
+}
+
+.option-group:first-of-type .option-title,
+.option-group:nth-of-type(3) .option-title {
+    padding-top: 2px;
+}
+
+.option-title {
+    display: flex;
+    align-items: center;
+    width: 102px;
+    flex-shrink: 0;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+
+.option-title span:first-child {
+    margin-right: 7px;
+}
+
+.option-title label {
+    white-space: nowrap;
+}
+
+.option-item {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    gap: 22px;
+}
+
+/* 單選按鈕樣式 (Radio) */
+.radio-option input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.radio-circle {
+    display: inline-block;
+    flex-shrink: 0;
+    width: 11px;
+    height: 11px;
+    border: 1px solid #999;
+    border-radius: 50%;
+    margin-right: 8px;
+    background-color: transparent;
+    position: relative;
+}
+
+.radio-option {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.radio-option input:checked + .radio-circle,
+.radio-option input:checked ~ .style-title-box .radio-circle {
+    border-color: #999;
+}
+
+.radio-option input:checked + .radio-circle::after,
+.radio-option input:checked ~ .style-title-box .radio-circle::after {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: #bd8585;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* 尺寸選項區塊 */
+.option-group:first-of-type .radio-option .size-box {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.option-group:first-of-type .radio-option .size-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.option-group:first-of-type .radio-option .size-title,
+.option-group:first-of-type .radio-option small {
+    line-height: 1.2;
+}
+
+.option-group:first-of-type .radio-option small {
+    margin-top: 2px;
+    font-weight: 300;
+}
+
+/* 口味選項隙縫 */
+.option-group:nth-of-type(2) .option-item {
+    gap: 25px;
+}
+
+/* 風格選項 */
+.style-options {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.style-options .radio-option {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 85px;
+}
+
+.style-title-box {
+    display: flex;
+    align-items: center;
+}
+
+.style-options .style-icon {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.style-options .style-icon img {
+    width: 70px;
+    height: auto;
+}
+
+/* 顏色選項 */
+.color-options {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 22px;
+    row-gap: 12px;
+    max-width: 280px;
+}
+
+.color-options .radio-option {
+    min-width: 55px;
+}
+
+.color-dot {
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    margin-left: 5px;
+}
+
+.color-dot.white { background-color: white; border: 1px solid #ddd; }
+.color-dot.pink  { background-color: #e8c7e8; }
+.color-dot.blue  { background-color: #add8ee; }
+.color-dot.purple{ background-color: #d9c0f5; }
+.color-dot.yellow{ background-color: #fff49a; }
+
+/* 蛋糕文字輸入 */
+.text-option {
+    position: relative;
+    flex-wrap: wrap;
+    margin-top: 3px;
+}
+
+.text-choice {
+    display: flex;
+    gap: 22px;
+}
+
+.text-input {
+    width: 100%;
+    margin-left: 102px;
+    margin-top: 7px;
+    position: relative;
+}
+
+.text-input textarea {
+    width: 280px;
+    height: 60px;
+    resize: none;
+    border: none;
+    outline: none;
+    background-color: #dedede;
+    padding: 10px;
+    font-size: 12px;
+    color: #777;
+    transition: background-color 0.2s ease;
+}
+
+.text-input textarea:focus {
+    background-color: #d8d8d8;
+}
+
+/* 購物車區塊 */
+.cart-area {
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 102px;
+}
+
+.total-price {
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #bd8585;
+}
+
+.total-price span {
+    margin-left: 4px;
+    letter-spacing: 1.5px;
+}
+
+.add-cart {
+    width: 100px;
+    height: 32px;
+    border-radius: 15px;
+    background-color: #bd8585;
+    color: white;
+    transition: all 0.2s ease;
+}
+
+.add-cart:hover {
+    background-color: #a86f6f;
+    transform: scale(1.05);
+}
+
+.add-cart:active {
+    transform: scale(0.96);
+}
+
+/* ======== FOOTER =========== */
+footer {
+    padding: 10px 20px;
+    background-color: rgb(180, 180, 180);
+    color: white;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+}
+
+footer p {
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+footer div {
+    display: flex;
+    gap: 25px;
+}
+
+footer div a {
+    color: rgb(110, 100, 100);
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

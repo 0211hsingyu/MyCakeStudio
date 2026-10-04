@@ -1,0 +1,223 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Noto Sans TC", sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    color: rgb(145, 145, 145);
+    background-color: rgb(240, 240, 240);
+    font-size: 13px;
+    
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+button {
+    font-family: inherit;
+    border: none;
+    cursor: pointer;
+}
+
+/* <!-- ========HEADER=========== --> */
+.header {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* LOGO */
+.header-inner {
+    position: absolute;
+    left: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.logo img {
+    width: 300px;
+}
+
+
+/* 導覽列 */
+.nav {
+    display: flex;
+    gap: 40px;
+}
+
+.nav a {
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.nav a:hover {
+    color: #bd8585;
+}
+
+/* 右邊icon */
+.header-icon {
+    position: absolute;
+    right: 45px;
+    display: flex;
+    gap: 25px;
+}
+
+.header-icon a {
+    font-size: 27px;
+    transition: 0.3s;
+}
+
+.header-icon a:hover {
+    color: #bd8585;
+}
+/* <!-- ========NEWS DETAIL=========== --> */
+.news-detail{
+    width: 100%;
+    padding-top: 80px;
+    padding-bottom: 180px;
+}
+/* <!-- ========上方文章資訊=========== --> */
+.news-detail-header{
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+    margin-top: 100px;
+}
+.news-detail-meta{
+    margin:0;
+    font-size: 11px;
+    font-weight: 300;
+}
+/* 左上角標題 */
+.news-detail-header h1{
+    margin: 0 0 14px;
+    font-size: 17px;
+    font-weight: 400;
+    color: #bd8585;
+    letter-spacing: 0.5px;
+}
+.news-detail-header h1 span{
+    margin-left: 8px;
+}
+/* 文章主題 */
+.news-detail-content{
+    width: 100%;
+    max-width: 600px;
+    margin: 80px auto 0;
+    text-align: center;
+}
+/* 中間標題 */
+.article-title{
+    position: relative;
+    padding: 20px 0 22px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+.article-title h2{
+    margin: 0 0 14px;
+    font-size: 25px;
+    font-weight: 500;
+    color: #bd8585;
+    letter-spacing: 1px;
+}
+.article-en-title{
+    margin: 0;
+    font-family: "Times New Roman", serif;
+    font-size: 17px;
+    font-style: italic;
+    font-weight: 300;
+    color: #777;
+    letter-spacing: 0.3px;
+}
+/* 文章文字 */
+.article-text{
+    margin-top: 40px;
+    line-height: 2;
+}
+.article-text p{
+    margin: 0 0 8px;
+}
+/* <!-- ========PICTURE=========== --> */
+.article-image{
+    width: 500px;
+    height: 300px;
+    max-width: 90%;
+    margin: 42px auto 0;
+    overflow: hidden;
+    border-radius: 14px;
+}
+.article-image img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 10%;
+}
+/* 商品資訊 */
+.article-info{
+    margin-top: 43px;
+    line-height: 2;
+    margin-bottom: 100px;
+}
+.article-info p{
+    margin: 0 0 10px;
+}
+.article-info ul{
+    width: fit-content;
+    margin: 0 auto 15px;
+    padding-left: 18px;
+    text-align: left;
+}
+.article-info li{
+    padding-left: 2px;
+}
+.article-note{
+    margin-top: 18px !important;
+}
+/* <!-- ========FOOTER=========== --> */
+footer {
+    padding: 10px 20px;
+    background-color: rgb(180, 180, 180);
+    color: white;
+    font-size: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    position: relative;
+}
+
+footer p {
+    margin: 0;
+
+    /* 固定在整個 footer 正中央 */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+footer div {
+    display: flex;
+    gap: 25px;
+}
+
+footer div a {
+    color: rgb(110, 100, 100);
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
