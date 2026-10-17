@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cake Studio</title>
+    <!-- 字體 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="./new1.css">
+
+</head>
+
+<body>
+    <!-- ========HEADER=========== -->
+    <header class="header">
+        <div class="header-inner">
+            <a href="./index.html" class="logo">
+                <img src="./indeximg/logo.png" alt="My Cake Studio">
+            </a>
+        </div>
+
+        <nav class="nav" id="mainNav">
+            <a href="./index.html">首頁</a>
+            <a href="./customizeCake.html">客製化蛋糕</a>
+            <a href="./about.html">關於My Cake</a>
+            <a href="./news.html">最新動態</a>
+        </nav>
+
+        <div class="header-icon">
+            <button class="mobile-menu-toggle" id="mobileMenuBtn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <!-- 會員選單 Wrapper -->
+            <div class="member-menu-wrapper" style="position: relative;">
+                <!-- 點擊觸發彈出選單的按鈕 -->
+                <a href="javascript:void(0)" id="openMemberBtn">
+                    <i class="fa-regular fa-user"></i>
+                </a>
+
+                <!-- 點擊圖示後彈出的下拉選單 -->
+                <div class="member-dropdown" id="memberDropdown">
+                    <!-- 未登入狀態：顯示登入與註冊按鈕 -->
+                    <div id="loggedOutView" class="member-view">
+                        <div class="member-btn-group">
+                            <a href="./login.html" class="member-btn login-btn">會員登入</a>
+                            <a href="./register.html" class="member-btn register-btn">新會員註冊</a>
+                        </div>
+                    </div>
+
+                    <!-- 已登入狀態：顯示個人帳戶選單（已移除登出） -->
+                    <div id="loggedInView" class="member-view" style="display: none;">
+                        <div class="user-greeting">嗨，<span id="userNameDisplay">會員</span></div>
+                        <hr class="menu-divider">
+                        <ul class="member-links">
+                            <li><a href="./member.html">我的帳戶</a></li>
+                            <li><a href="#">訂單查詢</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 購物車圖示 -->
+            <a href="javascript:void(0)" class="cart-icon-wrapper" id="openCartBtn">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-badge" id="cartBadge"></span>
+            </a>
+        </div>
+    </header>
+    <!-- ========NEWS DETAIL=========== -->
+    <main class="new-detail">
+        <!-- 文章標題 -->
+        <div class="news-detail-header">
+            <h1>
+                <span id="newsMainTitle"></span>
+                <span id="newsSubtitle"></span>
+            </h1>
+            <p class="news-detail-meta">
+                <span id="newsAuthor"></span> | <span id="newsDate"></span>
+            </p>
+        </div>
+        <!-- 文章內容 -->
+        <article class="news-detail-content">
+            <div class="article-title">
+                <h2 id="newsSectionTitle"></h2>
+                <p class="article-en-title" id="newsEnTitle"></p>
+            </div>
+            <div class="article-text" id="newsParagraphs"></div>
+            <!-- 商品圖片 -->
+            <div class="article-image">
+                <img id="newsImage" src="" alt="">
+            </div>
+            <!-- 商品資訊 -->
+            <div class="article-info" id="articleInfoArea">
+                <p id="infoListHeader"></p>
+                <ul id="newsItemList"></ul>
+                <p class="article-note" id="newsNote"></p>
+            </div>
+        </article>
+    </main>
+    <!-- ======== 購物車側邊抽屜 (Drawer) =========== -->
+    <div class="cart-drawer-overlay" id="cartOverlay"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-drawer-header">
+            <h3>購物車清單</h3>
+            <button class="close-cart" id="closeCartBtn">&times;</button>
+        </div>
+        <div class="cart-items-list" id="cartItemsList">
+            <!-- 購物車項目會由 JavaScript 動態寫入 -->
+        </div>
+        <div class="cart-drawer-footer">
+            <div class="cart-total-row">
+                <span>總計金額</span>
+                <span id="drawerTotalAmount">NT$ 0</span>
+            </div>
+            <button class="checkout-btn" onclick="handleCheckout()">前往結帳</button>
+        </div>
+    </div>
+    <!-- ========FOOTER=========== -->
+    <footer>
+        <p>&copy;2026 All Rights Reserved by My Cake Studio
+        </p>
+        <div>
+            <a href="#">隱私權政策</a>
+            <a href="#">Back to Top</a>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // ==================== 手機版漢堡選單邏輯 ================
+            const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+            const mainNav = document.getElementById("mainNav");
+            if (mobileMenuBtn && mainNav) {
+                mobileMenuBtn.addEventListener("click", function () {
+                    // 點擊時切換 active 狀態 
+                    mainNav.classList.toggle("active");
+                    // 檢查目前選單狀態 
+                    console.log("目前選單是否開啟：",
+                        mainNav.classList.contains("active"));
+                });
+            }
+            // 1. 從 localStorage 讀取購物車資料
+            let cart = JSON.parse(localStorage.getItem("cake_cart")) || [];
+
+            // 2. 取得 DOM 元素
+            const cartBadge = document.getElementById("cartBadge");
+            const cartItemsList = document.getElementById("cartItemsList");
+            const drawerTotalAmount = document.getElementById("drawerTotalAmount");
+            const cartDrawer = document.getElementById("cartDrawer");
+            const cartOverlay = document.getElementById("cartOverlay");
+            const openCartBtn = document.getElementById("openCartBtn");
+            const closeCartBtn = document.getElementById("closeCartBtn");
+
+            // 3. 控制側邊抽屜開啟/關閉
+            function toggleCart(open) {
+                if (cartDrawer && cartOverlay) {
+                    if (open) {
+                        cartDrawer.classList.add("active");
+                        cartOverlay.classList.add("active");
+                    } else {
+                        cartDrawer.classList.remove("active");
+                        cartOverlay.classList.remove("active");
+                    }
+                }
+            }
+
+            // 4. 更新購物車 UI (渲染清單與計算總金額)
+            function updateCartUI() {
+                // 同步存入 localStorage
+                localStorage.setItem("cake_cart", JSON.stringify(cart));
+
+                // 更新 Badge 數量與顯示狀態
+                if (cartBadge) {
+                    const totalCount = cart.length;
+                    cartBadge.textContent = totalCount;
+                    cartBadge.style.display = totalCount > 0 ? "flex" : "none";
+                }
+
+                // 清空列表
+                if (!cartItemsList) return;
+                cartItemsList.innerHTML = "";
+
+                if (cart.length === 0) {
+                    cartItemsList.innerHTML = `<div class="empty-msg">購物車目前是空的</div>`;
+                    if (drawerTotalAmount) drawerTotalAmount.textContent = "NT\$ 0";
+                    return;
+                }
+
+                let grandTotal = 0;
+                let listHtml = "";
+
+                cart.forEach((item, index) => {
+                    grandTotal += Number(item.price) || 0;
+
+                    listHtml += `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <div class="cart-item-title">客製化蛋糕 (${item.size ? item.size + '吋' : '未指定'})</div>
+                            <div class="cart-item-detail">
+                                口味: ${item.flavor || '預設'} / 風格: ${item.style || '無'} / 顏色: ${item.color || '預設'}<br>
+                                ${item.text ? `標語: "${item.text}"` : '無標語'}
+                            </div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div class="cart-item-price">NT$ ${item.price}</div>
+                            <span class="remove-item" onclick="removeCartItem(${index})" style="cursor:pointer;">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </span>
+                        </div>
+                    </div>
+                `;
+                });
+
+                cartItemsList.innerHTML = listHtml;
+
+                if (drawerTotalAmount) {
+                    drawerTotalAmount.textContent = `NT$ ${grandTotal}`;
+                }
+            }
+
+            // 5. 提供刪除項目的全域函式
+            window.removeCartItem = function (index) {
+                cart.splice(index, 1);
+                updateCartUI();
+            };
+
+            // 6. 跨頁面同步購物車 (當其他分頁變更購物車時自動刷新)
+            window.addEventListener("storage", function (e) {
+                if (e.key === "cake_cart") {
+                    cart = JSON.parse(e.newValue) || [];
+                    updateCartUI();
+                }
+            });
+
+            // 7. 事件監聽
+            if (openCartBtn) {
+                openCartBtn.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    toggleCart(true);
+                });
+            }
+
+            if (closeCartBtn) closeCartBtn.addEventListener("click", () => toggleCart(false));
+            if (cartOverlay) cartOverlay.addEventListener("click", () => toggleCart(false));
+
+            // 初始渲染購物車
+            updateCartUI();
+            // ====2. 會員下拉選單邏輯 (放這裡最適合) ===========
+            const openMemberBtn = document.getElementById("openMemberBtn");
+            const memberDropdown = document.getElementById("memberDropdown");
+            const loggedOutView = document.getElementById("loggedOutView");
+            const loggedInView = document.getElementById("loggedInView");
+            const userNameDisplay = document.getElementById("userNameDisplay");
+
+            // 檢查登入狀態並更新顯示切換
+            function checkUserLoginStatus() {
+                const userInfo = JSON.parse(localStorage.getItem("user_info"));
+                // userInfo && userInfo.isLoggedIn
+                if (userInfo && userInfo.isLoggedIn) {
+                    loggedOutView.style.display = "none";
+                    loggedInView.style.display = "block";
+                    if (userNameDisplay) userNameDisplay.textContent = userInfo.name || "會員";
+                } else {
+                    loggedOutView.style.display = "block";
+                    loggedInView.style.display = "none";
+                }
+            }
+            // 點擊會員 icon 開關彈出選單
+            if (openMemberBtn) {
+                openMemberBtn.addEventListener("click", function (e) {
+                    e.stopPropagation();
+                    checkUserLoginStatus();
+                    if (memberDropdown) memberDropdown.classList.toggle("active");
+                });
+            }
+            // 點擊頁面其他空白處時自動關閉選單
+            document.addEventListener("click", function (e) {
+                if (memberDropdown && !memberDropdown.contains(e.target) && openMemberBtn && !openMemberBtn.contains(e.target)) {
+                    memberDropdown.classList.remove("active");
+                }
+            });
+        });// DOMContentLoaded 結束點
+
+        // ==== 9. 購物車按鈕：前往結帳邏輯 (需放在 DOMContentLoaded 外面) ===========
+        function handleCheckout() {
+            const userInfo = JSON.parse(localStorage.getItem("user_info"));
+
+            // 判斷是否有登入紀錄
+            if (userInfo && userInfo.isLoggedIn) {
+                // 已登入：前往結帳頁
+                window.location.href = './checkout.html';
+            } else {
+                // 未登入：前往登入頁，並附帶 redirect=checkout 參數
+                window.location.href = './login.html?redirect=checkout';
+            }
+        }
+        // ==== 新聞資料 ===========
+        const newsData = {
+            1: {
+                date: "2026-07-18",
+                author: "mycake",
+                title: "父親節預購",
+                subtitle: "07/18 起開放預訂",
+                enTitle: "Father’s Day Pre-order Special",
+                sectionTitle: "父親節預購開始",
+                image: "./newsimg/news-01.jpg",
+                imageAlt: "父親節蛋糕",
+                paragraphs: [
+                    "致 最親愛的爸爸<br>爸爸總是默默不說累，<br>但那份心意，我們替你送到。",
+                    "父親節預購即日起開放，精選經典品項，宅配、門市自取皆可預訂。",
+                    "預購期間：07/18（六）－ 08/08（六）<br>溫馨提醒：預購期間數量有限，建議提早預訂。<br>預購期間僅提供圖片公布之指定商品。"
+                ],
+                infoListHeader: "門市販售品項｜價位（4吋、6吋、8吋）",
+                items: [
+                    "鮮奶油海綿蛋糕",
+                    "鮮奶油草莓蛋糕",
+                    "鮮奶油巧克力蛋糕",
+                    "經典黑森林蛋糕"
+                ],
+                note: "※ 商品皆以實際販售品項為準。"
+            },
+            2: {
+                date: "2026-06-26",
+                author: "mycake",
+                title: "因應豪大雨影響之配送服務調整通知",
+                subtitle: "",
+                enTitle: "Delivery Service Adjustments Due to Severe Weather",
+                sectionTitle: "因應豪大雨影響之配送服務調整通知",
+                image: "./newsimg/news-02.jpg",
+                imageAlt: "蛋糕圖片",
+                paragraphs: [
+                    "各位顧客您好：",
+                    "因受近期豪大雨影響，為考量黑貓宅急便配送人員之安全，<br>凡經政府公告「停班停課」之地區將暫停包裹配送服務。",
+                    "受影響之訂單商品，我們將延後至恢復正常上班上課後，<br>依序安排陸續配送。造成您的不便，敬請見諒。"
+                ],
+                infoListHeader: "服務調整詳情",
+                items: [
+                    "配合政策：依據「行政院人事行政總處」之公告，同步停止停班地區與日期的包裹收、寄件服務。",
+                    "影響範圍：依各地方政府最新公告停班停課之地區。",
+                    "即時查詢：詳細停班停課地區與最新動態，請隨時參閱行政院人事行政總處最新公告網址。"
+                ],
+                note: "感謝您的體諒與配合，豪大雨期間也請大家注意自身安全。"
+            },
+            3: {
+                date: "2026-04-22",
+                author: "mycake",
+                title: "2026 母親節預購",
+                subtitle: "",
+                enTitle: "Mother's Day Special",
+                sectionTitle: "母親節預購今日正式開始",
+                image: "./newsimg/news-03.jpg",
+                imageAlt: "蛋糕圖片",
+                paragraphs: [
+                    "慶祝母親節，即日起全面開放預購！",
+                    "官網宅配與門市販售品項如下，因節慶期間數量有限，建議您提早訂購。"
+                ],
+                infoListHeader: "門市販售品項｜價位（4吋、6吋、8吋）",
+                items: [
+                    "鮮奶油海綿蛋糕",
+                    "鮮奶油草莓蛋糕",
+                    "鮮奶油巧克力蛋糕",
+                    "經典黑森林蛋糕"
+                ],
+                note: "※ 商品皆以實際販售品項為準。"
+            },
+            4: {
+                date: "2025-11-29",
+                author: "mycake",
+                title: "台中快閃門市",
+                subtitle: "12/02-01/05",
+                enTitle: "Taichung Pop-up Store",
+                sectionTitle: "台中快閃門市",
+                image: "./newsimg/news-04.jpg",
+                imageAlt: "蛋糕圖片",
+                paragraphs: [
+                    "現已開幕",
+                    "台中新光三越門市目前已開幕",
+                    "每日販售品項以現場為主，謝謝您"
+                ],
+                infoListHeader: "快閃門市資訊",
+                items: [
+                    "地點｜ 新光三越台中中港店 1F",
+                    "期間｜ 2025 / 12 / 2（Tue）～ 2026 / 1 / 5（Mon）",
+                    "開賣時間｜ 每日 13:00 準時開賣",
+                    "備註｜ 現場商品每日限量，售完為止"
+                ],
+                note: "快閃櫃 不提供預訂蛋糕取貨服務，一切以現場購買為主。"
+            },
+            5: {
+                date: "2025-01-29",
+                author: "mycake",
+                title: "2025/02/02 價格調整公告",
+                subtitle: "",
+                enTitle: "Price Adjustment Notice",
+                sectionTitle: "2025/02/02 價格調整公告",
+                image: "./newsimg/news-05.jpg",
+                imageAlt: "蛋糕圖片",
+                paragraphs: [
+                    "感謝您一直以來對紅葉蛋糕的支持與愛護，您的肯定是我們持續用心製作美味蛋糕的最大動力。",
+                    "受到原物料成本不斷上漲的影響，自 2025年2月2日 起，我們將進行價格調整，確保能繼續為您提供最優質的產品與服務。",
+                    "我們深知價格變動可能帶來不便，對此我們深感抱歉，並誠摯感謝您一直以來的理解與支持。",
+                    "紅葉蛋糕將不變初心，持續堅持選用高品質食材，為您帶來幸福的美味時刻。"
+                ],
+                infoListHeader: "主要調整類別與注意事項",
+                items: [
+                    "經典鮮奶油蛋糕系列價格微幅調整",
+                    "季節限定與客製化蛋糕系列價格調整",
+                    "新價格於 2025年2月2日 00:00 起正式生效",
+                    "於生效前已完成預約並付款之訂單均不受影響"
+                ],
+                note: "如有任何疑問，歡迎隨時與我們聯繫。再次感謝您的支持。"
+            },
+            6: {
+                date: "2025-01-03",
+                author: "mycake",
+                title: "新年期間官網、門市營業時間調整",
+                subtitle: "",
+                enTitle: "Lunar New Year Operating Hours Notice: Website & Stores",
+                sectionTitle: "新年期間官網、門市營業時間調整",
+                image: "./newsimg/news-06.jpg",
+                imageAlt: "商店照片",
+                paragraphs: [
+                    "門市營業時間調整",
+                    "2025 /01 / 27(一) 小年夜全部門市皆正常營業",
+                    "休息時間：2025 /01 / 28（除夕）- 2025 /02 /01（初四）",
+                    "恢復營業：2025 /02 /02（初五）起正常營業"
+                ],
+                infoListHeader: "官網到貨時間調整",
+                items: [
+                    "年前最後到貨日：2025/01/17",
+                    "年後恢復到貨日：2025/02/06"
+                ],
+                note: "感謝您一如既往的支持與喜愛，紅葉蛋糕全體員工祝您新春快樂"
+            },
+        }
+
+        // 等待 HTML 載入完成，再顯示新聞內容
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // 取得網址中的新聞 ID
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get("id");
+
+            // 依照 ID 取得新聞資料
+            const news = newsData[id];
+
+            if (!news) {
+                document.querySelector(".new-detail").innerHTML =
+                    "<h2>找不到這篇新聞</h2>";
+                return;
+            }
+
+            // 1. 顯示標題與基本資訊
+            document.getElementById("newsMainTitle").textContent =
+                news.title || "";
+
+            document.getElementById("newsSubtitle").textContent =
+                news.subtitle || "";
+
+            document.getElementById("newsAuthor").textContent =
+                news.author || "mycake";
+
+            document.getElementById("newsDate").textContent =
+                news.date || "";
+
+            document.getElementById("newsSectionTitle").textContent =
+                news.sectionTitle || news.title || "";
+
+            document.getElementById("newsEnTitle").textContent =
+                news.enTitle || "";
+
+            // 2. 顯示圖片
+            const image = document.getElementById("newsImage");
+
+            if (image) {
+                image.src = news.image || "";
+                image.alt = news.imageAlt || news.title || "";
+            }
+
+            // 3. 顯示文章段落
+            const paragraphsContainer =
+                document.getElementById("newsParagraphs");
+
+            paragraphsContainer.innerHTML =
+                (news.paragraphs || [])
+                    .map(p => `<p>${p}</p>`)
+                    .join("");
+
+            // 4. 顯示商品清單
+            const listHeader = document.getElementById("infoListHeader");
+            const listContainer = document.getElementById("newsItemList");
+            const articleInfoArea = document.getElementById("articleInfoArea");
+
+            if (news.items && news.items.length > 0) {
+
+                listHeader.textContent = news.infoListHeader || "";
+
+                listContainer.innerHTML = news.items
+                    .map(item => `<li>${item}</li>`)
+                    .join("");
+
+                articleInfoArea.style.display = "block";
+
+            } else {
+
+                listHeader.textContent = "";
+                listContainer.innerHTML = "";
+                articleInfoArea.style.display = "none";
+            }
+
+            // 5. 顯示備註
+            document.getElementById("newsNote").textContent =
+                news.note || "";
+
+        });
+
+    </script>
+</body>
+
+</html>

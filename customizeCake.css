@@ -1,0 +1,818 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Noto Sans TC", sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    color: rgb(145, 145, 145);
+    background-color: rgb(240, 240, 240);
+    font-size: 13px;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+button {
+    font-family: inherit;
+    border: none;
+    cursor: pointer;
+}
+
+/* ======== HEADER =========== */
+.header {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.header-inner {
+    position: absolute;
+    left: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.logo img {
+    width: 300px;
+}
+
+.nav {
+    display: flex;
+    gap: 40px;
+}
+
+.nav a {
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.nav a:hover {
+    color: #bd8585;
+}
+
+.header-icon {
+    position: absolute;
+    right: 45px;
+    display: flex;
+    gap: 25px;
+}
+
+.header-icon a {
+    font-size: 27px;
+    transition: 0.3s;
+}
+
+.header-icon a:hover {
+    color: #bd8585;
+}
+
+
+
+/* ======== MAIN =========== */
+.customize-cake {
+    width: 100%;
+    max-width: 1100px;
+    min-height: calc(100vh - 160px);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 35px 60px 45px;
+}
+
+/* 蛋糕預覽區 */
+.cake-preview {
+    position: relative;
+    min-height: 430px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cake-preview h2,
+.customize-options h2 {
+    font-size: 14px;
+    font-weight: 550;
+    letter-spacing: 2px;
+}
+
+.cake-preview h2 {
+    transform: translateX(-50px);
+}
+
+.preview {
+    width: 100%;
+    max-width: 320px;
+    margin: 70px auto 0;
+    transform: translateX(-50px);
+}
+
+/* 客製化選項區 */
+.customize-options {
+    padding-left: 20px;
+    padding-right: 5px;
+}
+
+.customize-options h2 {
+    margin-bottom: 27px;
+}
+
+.option-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.option-group:first-of-type,
+.option-group:nth-of-type(3) {
+    align-items: flex-start;
+}
+
+.option-group:first-of-type .option-title,
+.option-group:nth-of-type(3) .option-title {
+    padding-top: 2px;
+}
+
+.option-title {
+    display: flex;
+    align-items: center;
+    width: 102px;
+    flex-shrink: 0;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+
+.option-title span:first-child {
+    margin-right: 7px;
+}
+
+.option-title label {
+    white-space: nowrap;
+}
+
+.option-item {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    gap: 22px;
+}
+
+/* 單選按鈕樣式 (Radio) */
+.radio-option input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.radio-circle {
+    display: inline-block;
+    flex-shrink: 0;
+    width: 11px;
+    height: 11px;
+    border: 1px solid #999;
+    border-radius: 50%;
+    margin-right: 8px;
+    background-color: transparent;
+    position: relative;
+}
+
+.radio-option {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.radio-option input:checked + .radio-circle,
+.radio-option input:checked ~ .style-title-box .radio-circle {
+    border-color: #999;
+}
+
+.radio-option input:checked + .radio-circle::after,
+.radio-option input:checked ~ .style-title-box .radio-circle::after {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: #bd8585;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* 尺寸選項區塊 */
+.option-group:first-of-type .radio-option .size-box {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.option-group:first-of-type .radio-option .size-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.option-group:first-of-type .radio-option .size-title,
+.option-group:first-of-type .radio-option small {
+    line-height: 1.2;
+}
+
+.option-group:first-of-type .radio-option small {
+    margin-top: 2px;
+    font-weight: 300;
+}
+
+/* 口味選項隙縫 */
+.option-group:nth-of-type(2) .option-item {
+    gap: 25px;
+}
+
+/* 風格選項 */
+.style-options {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.style-options .radio-option {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 85px;
+}
+
+.style-title-box {
+    display: flex;
+    align-items: center;
+}
+
+.style-options .style-icon {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.style-options .style-icon img {
+    width: 70px;
+    height: auto;
+}
+
+/* 顏色選項 */
+.color-options {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 22px;
+    row-gap: 12px;
+    max-width: 280px;
+}
+
+.color-options .radio-option {
+    min-width: 55px;
+}
+
+.color-dot {
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    margin-left: 5px;
+}
+
+.color-dot.white { background-color: white; border: 1px solid #ddd; }
+.color-dot.pink  { background-color: #e8c7e8; }
+.color-dot.blue  { background-color: #add8ee; }
+.color-dot.purple{ background-color: #d9c0f5; }
+.color-dot.yellow{ background-color: #fff49a; }
+
+/* 蛋糕文字輸入 */
+.text-option {
+    position: relative;
+    flex-wrap: wrap;
+    margin-top: 3px;
+}
+
+.text-choice {
+    display: flex;
+    gap: 22px;
+}
+
+.text-input {
+    width: 100%;
+    margin-left: 102px;
+    margin-top: 7px;
+    position: relative;
+}
+
+.text-input textarea {
+    width: 280px;
+    height: 60px;
+    resize: none;
+    border: none;
+    outline: none;
+    background-color: #dedede;
+    padding: 10px;
+    font-size: 12px;
+    color: #777;
+    transition: background-color 0.2s ease;
+}
+
+.text-input textarea:focus {
+    background-color: #d8d8d8;
+}
+
+/* 購物車區塊 */
+.cart-area {
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 102px;
+}
+
+.total-price {
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #bd8585;
+}
+
+.total-price span {
+    margin-left: 4px;
+    letter-spacing: 1.5px;
+}
+
+.add-cart {
+    width: 100px;
+    height: 32px;
+    border-radius: 15px;
+    background-color: #bd8585;
+    color: white;
+    transition: all 0.2s ease;
+}
+
+.add-cart:hover {
+    background-color: #a86f6f;
+    transform: scale(1.05);
+}
+
+.add-cart:active {
+    transform: scale(0.96);
+}
+/* ========新增：購物車 Badge 與側邊抽屜 (Drawer) 樣式 =========== */
+/* 購物車圖示定位與數字 Badge */
+.cart-icon-wrapper{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.cart-badge{
+    position: absolute;
+    top:-6px;
+    right: -10px;
+    color: white;
+    background-color: #bd8585;
+    font-size: 10px;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 17px;
+    height: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* 點擊加入購物車時的彈跳動畫 */
+.cart-badge.bump{
+    transform: scale(1.35);
+}
+
+/*購物車側邊抽屜 (Drawer) 與半透明背景遮罩 */
+.cart-drawer-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 998;
+}
+
+.cart-drawer-overlay.active{
+    opacity: 1;
+    visibility: visible;
+}
+
+.cart-drawer{
+    position: fixed;
+    top: 0;
+    right: -380px;
+    width: 350px;
+    max-width: 85vw;
+    height: 100vh;
+    background-color: #f7f7f7;
+    box-shadow: -4px 0 15px rgba(0, 0, 0, 0.08);
+    transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    padding: 25px 20px;
+}
+/* 滑出顯示 */
+.cart-drawer.active{
+    right: 0;   
+}
+/* 抽屜內部結構樣式 */
+.cart-drawer-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 15px;
+}
+.cart-drawer-header h3{
+    font-size: 15px;
+    font-weight: 600;
+    color: #666;
+    letter-spacing: 1px;
+}
+.close-cart{
+    background: transparent;
+    font-size: 22px;
+    color: #999;
+    transition: color 0.2s;
+}
+.close-cart:hover{
+    color: #bd8585;
+}
+/* 購物車商品列表區塊 */
+.cart-items-list{
+    flex: 1;
+    overflow-y: auto;
+    margin: 15px 0;
+    padding-right: 5px;
+}
+.cart-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 12px 0;
+    transition: all 0.2s ease;
+}
+/* 兩個商品以上時，在非最後一個商品下方加上分隔線 */
+.cart-item:not(:last-child){
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 16px;
+    margin-bottom: 8px;
+}
+.cart-item-info{
+    font-size: 12px;
+    color: #666;
+}
+
+.cart-item-title{
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 4px;
+    font-size: 13px;
+}
+
+.cart-item-detail{
+    font-size: 11px;
+    color: #888;
+    line-height: 1.5;
+}
+.cart-item-price{
+    font-weight: 600;
+    color: #bd8585;
+    font-size: 13px;
+}
+.remove-item{
+    color:#ccc;
+    cursor: pointer;
+    font-size: 13px;
+    margin-left: 10px;
+    transition: color 0.2s;
+}
+.remove-item:hover{
+    color: #e74c3c;
+}
+.empty-msg{
+    text-align: center;
+    color: #aaa;
+    margin-top: 50px;
+    font-size: 13px;
+}
+/* 抽屜底部結帳區塊 */
+.cart-drawer-footer{
+    border-top: 1px solid #e0e0e0;
+    padding-top: 15px;
+}
+.cart-total-row{
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 600;
+    color:#bd8585;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.cart-total-row span:last-child{
+    color: #bd8585;
+    font-size: 15px;
+}
+.checkout-btn{
+    width: 100%;
+    height: 38px;
+    background-color: #bd8585;
+    color: #ffffff;
+    border-radius: 20px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    transition: all 0.2s ease;
+}
+
+.checkout-btn:active {
+    transform: scale(0.96);
+}
+
+.checkout-btn:hover{
+    background-color: #a86f6f;
+    transform: scale(1.05);
+}
+/* ========會員彈出選單 =========== */
+.member-menu-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* 1. 彈出選單本體 */
+.member-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: -5px;
+    width: 125px; /* 精緻寬度 */
+    background-color: #f6f6f6;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+    padding: 10px;
+    display: none;
+    z-index: 1000;
+    transition: all 0.2s ease;
+}
+
+/* 點擊圖示後加上 active 顯示 */
+.member-dropdown.active {
+    display: block;
+    animation: dropdownFadeIn 0.2s ease-out;
+}
+
+@keyframes dropdownFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 2. 已登入問候語 */
+.user-greeting {
+    font-size: 14px !important;
+    font-weight: bold;
+    letter-spacing: 0.3px;
+    padding-bottom: 6px;
+    margin-bottom: 6px;
+    text-align: center;
+}
+
+.user-greeting span {
+    color: #bd8585;
+    text-transform: uppercase;
+}
+
+/* 3. 按鈕與連結區塊 */
+.member-btn-group,
+.member-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px; /* 縮小按鈕之間的間距 */
+}
+
+/* 4. 無方框按鈕（背景透明、無陰影） */
+.member-btn,
+.member-links li a {
+    display: block;
+    text-align: center;
+    padding: 6px 0 !important;
+    font-size: 14px !important;
+    font-weight: 500;
+    line-height: 1.4 !important;
+    color: rgb(145, 145, 145) !important;
+    background-color: transparent !important; /* 移除白色背景方框 */
+    border-radius: 12px;
+    text-decoration: none;
+    border: none !important;
+    box-shadow: none !important; /* 移除方框陰影 */
+    transition: all 0.2s ease;
+}
+
+/* 懸浮效果 (Hover) */
+.member-btn:hover,
+.member-links li a:hover {
+    color: #bd8585 !important;
+    background-color: #ededed !important; /* 滑過去時呈現微深的灰色微光，視覺更舒適 */
+    transform: none;
+}
+/* ======== FOOTER =========== */
+footer {
+    padding: 10px 20px;
+    background-color: rgb(180, 180, 180);
+    color: white;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+}
+
+footer p {
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+footer div {
+    display: flex;
+    gap: 25px;
+}
+
+footer div a {
+    color: rgb(110, 100, 100);
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* 電腦版：預設隱藏漢堡按鈕 */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: rgb(145, 145, 145);
+    transition: color 0.2s;
+    padding: 0;
+    line-height: 1;
+    align-items: center;
+    justify-content: center;
+}
+/* 當螢幕在 769px 到 900px 之間時的過渡調整 */
+@media (max-width: 1100px) and (min-width: 901px) {
+    .header {
+        padding: 0 20px;
+    }
+    .header-inner{
+        left: 25px;
+    }
+    .logo img {
+        width: 200px; /* 將 Logo 稍微縮小一點點 */
+    }
+    .nav {
+        gap: 20px; /* 縮小導覽列文字之間的間距 */
+    }
+    .nav a {
+        font-size: 13px; /* 稍微調小字體 */
+    }
+    .header-icon{
+        right: 25px;
+        gap: 15px;
+    }
+}
+@media (max-width: 900px) {
+     .mobile-menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    /* Header */
+    .header {
+        height: 80px;
+        padding: 0 15px;
+        justify-content: space-between;
+        position: relative;
+        z-index: 1001;
+    }
+
+    .header-inner {
+        position: static;
+        transform: none;
+    }
+
+    .logo img {
+        width: 150px;
+    }
+
+    .header-icon {
+        position: static;
+        gap: 20px;
+        align-items: center;
+    }
+
+    /* 漢堡選單 */
+    .nav {
+        display: none;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background-color: #f7f7f7;
+        flex-direction: column;
+        gap: 0;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        padding: 15px 0;
+        z-index: 1000;
+        text-align: center;
+    }
+
+    .nav.active {
+        display: flex;
+    }
+    .nav a{
+        padding: 18px 0;
+    }
+    .customize-cake{
+        grid-template-columns: 1fr;
+        padding: 30px 25px 40px;
+        gap: 35px;
+    }
+    
+    .cake-preview{
+        width: 100%;
+        min-height: auto;
+    }
+    .cake-preview h2{
+        transform: none;
+        align-self: flex-start;
+    }
+    .preview{
+        width: 100%;
+        max-width: 350px;
+        margin: 30px auto 0;
+        transform: none;
+    }
+    .customize-options{
+        padding: 0;
+        width: 100%;
+        min-width: 0;
+    }
+
+   /* 6. Footer 調整 */
+    footer {
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    footer p {
+        position: static;
+        transform: none;
+    }
+}

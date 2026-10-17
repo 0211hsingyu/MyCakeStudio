@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cake Studio</title>
+    <!-- 字體 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="./checkout.css">
+
+    <!-- 日期選擇器樣式 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <!-- 日期選擇器 JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+</head>
+
+<body>
+    <!-- ========HEADER=========== -->
+    <header class="header">
+        <div class="header-inner">
+            <a href="./index.html" class="logo">
+                <img src="./indeximg/logo.png" alt="My Cake Studio">
+            </a>
+        </div>
+
+        <nav class="nav" id="mainNav">
+            <a href="./index.html">首頁</a>
+            <a href="./customizeCake.html">客製化蛋糕</a>
+            <a href="./about.html">關於My Cake</a>
+            <a href="./news.html">最新動態</a>
+        </nav>
+
+        <div class="header-icon">
+            <button class="mobile-menu-toggle" id="mobileMenuBtn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <!-- 會員選單 Wrapper -->
+            <div class="member-menu-wrapper" style="position: relative;">
+                <!-- 點擊觸發彈出選單的按鈕 -->
+                <a href="javascript:void(0)" id="openMemberBtn">
+                    <i class="fa-regular fa-user"></i>
+                </a>
+
+                <!-- 點擊圖示後彈出的下拉選單 -->
+                <div class="member-dropdown" id="memberDropdown">
+                    <!-- 未登入狀態：顯示登入與註冊按鈕 -->
+                    <div id="loggedOutView" class="member-view">
+                        <div class="member-btn-group">
+                            <a href="./login.html" class="member-btn login-btn">會員登入</a>
+                            <a href="./register.html" class="member-btn register-btn">新會員註冊</a>
+                        </div>
+                    </div>
+
+                    <!-- 已登入狀態：顯示個人帳戶選單（已移除登出） -->
+                    <div id="loggedInView" class="member-view" style="display: none;">
+                        <div class="user-greeting">嗨，<span id="userNameDisplay">會員</span></div>
+                        <hr class="menu-divider">
+                        <ul class="member-links">
+                            <li><a href="./member.html">我的帳戶</a></li>
+                            <li><a href="#">訂單查詢</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 購物車圖示 -->
+            <a href="javascript:void(0)" class="cart-icon-wrapper" id="openCartBtn">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-badge" id="cartBadge"></span>
+            </a>
+        </div>
+    </header>
+    <!-- ========CHECKOUT=========== -->
+    <main class="checkout">
+        <form id="checkoutForm" style="display: flex; gap: 20px; width: 100%;">
+            <!-- 左側訂購資訊 -->
+            <section class="checkout-form">
+                <!-- ① 訂購者資訊 -->
+                <div class="form-section">
+                    <h2><span>①</span>
+                        訂購者資訊：
+                    </h2>
+                    <div class="form-group">
+                        <label for="name">姓名</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">電子郵件</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">電話</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                </div>
+                <!-- ② 取貨與付款 -->
+                <div class="form-section">
+                    <h2>
+                        <span>②</span>
+                        取貨與付款：
+                    </h2>
+                    <!-- 取貨日期 -->
+                    <div class="form-group date-group">
+                        <label for="pickup-data">取貨日期</label>
+                        <div class="input-icon">
+                            <input type="text" id="pickup-data" name="pickup-data" placeholder="請選擇取貨日期" required
+                                readonly>
+                        </div>
+                    </div>
+                    <!-- 付款方式/發票類型 -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="payment">付款方式</label>
+                            <div class="select-box">
+                                <select name="payment" id="payment" required>
+                                    <option value="">請選擇</option>
+                                    <option value="cash">現金付款</option>
+                                    <option value="transfer">銀行轉帳</option>
+                                    <option value="card">信用卡</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="invoice">發票類型</label>
+                            <div class="select-box">
+                                <select name="invoice" id="invoice" required>
+                                    <option value="">請選擇</option>
+                                    <option value="paper">紙本發票</option>
+                                    <option value="mobile">手機載具</option>
+                                    <option value="company">公司發票</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 手機載具條碼 -->
+                    <div class="form-group" id="barcodeGroup" style="display: none;">
+                        <label for="barcode">手機載具條碼</label>
+                        <input type="text" id="barcode" name="barcode">
+                    </div>
+                    <!-- 門市提醒 -->
+                    <div class="pickup-notice">
+                        <h3>門市取貨提醒：</h3>
+                        <p>・取貨時間 15:00~19:00（週日、週一公休）。<br>
+                            ・下單後最快可選擇取貨（需提前 2 天預訂）。<br>
+                            ・取貨日期限本人至門市領取。
+                        </p>
+                        <p>
+                            ※ 客服服務：有任何需求可洽詢官方 Line
+                            @mycake2026，
+                            有專人為您協助。
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <!-- ========右側訂單確認=========== -->
+            <section class="order-summary">
+                <h2>訂單確認摘要：</h2>
+                <!-- 動態渲染 -->
+                <div id="checkoutProductList"></div>
+                <div class="summary-line"></div>
+                <div class="summary-item">
+                    <span>小計：</span>
+                    <strong id="checkoutSubtotal">NT$ 0</strong>
+                </div>
+                <div class="summary-item total">
+                    <span>應付金額：</span>
+                    <strong id="checkoutTotal">NT$ 0</strong>
+                </div>
+                <button type="submit" class="submit-btn">確認送出預定</button>
+            </section>
+        </form>
+    </main>
+    <!-- ======== 購物車側邊抽屜 (Drawer) =========== -->
+    <div class="cart-drawer-overlay" id="cartOverlay"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-drawer-header">
+            <h3>購物車清單</h3>
+            <button class="close-cart" id="closeCartBtn">&times;</button>
+        </div>
+        <div class="cart-items-list" id="cartItemsList">
+            <!-- 購物車項目會由 JavaScript 動態寫入 -->
+        </div>
+        <div class="cart-drawer-footer">
+            <div class="cart-total-row">
+                <span>總計金額</span>
+                <span id="drawerTotalAmount">NT$ 0</span>
+            </div>
+            <button type="button" class="checkout-btn" onclick="toggleCheckoutCart(false)">返回訂單</button>
+        </div>
+    </div>
+    <!-- ========FOOTER=========== -->
+    <footer>
+        <p>&copy;2026 All Rights Reserved by My Cake Studio
+        </p>
+        <div>
+            <a href="#">隱私權政策</a>
+            <a href="#">Back to Top</a>
+        </div>
+    </footer>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // ========================================
+            // 1. 共用工具：讀取 localStorage
+            // ========================================
+            function getStorageData(key, defaultValue) {
+                try {
+                    const value = localStorage.getItem(key);
+                    return value ? JSON.parse(value) : defaultValue;
+                } catch (error) {
+                    console.error(`讀取 ${key} 失敗：`, error);
+                    return defaultValue;
+                }
+            }
+
+            // 避免使用者輸入的文字直接被當成 HTML
+            function escapeHTML(value) {
+                return String(value ?? "").replace(/[&<>"']/g, function (char) {
+                    const entities = {
+                        "&": "&amp;",
+                        "<": "&lt;",
+                        ">": "&gt;",
+                        '"': "&quot;",
+                        "'": "&#39;"
+                    };
+                    return entities[char];
+                });
+            }
+
+            // ========================================
+            // 2. 手機版漢堡選單
+            // ========================================
+            const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+            const mainNav = document.getElementById("mainNav");
+
+            if (mobileMenuBtn && mainNav) {
+                mobileMenuBtn.addEventListener("click", function () {
+                    mainNav.classList.toggle("active");
+                });
+            }
+
+            // ========================================
+            // 3. 檢查登入狀態
+            // ========================================
+            const userInfo = getStorageData("user_info", null);
+
+            if (!userInfo || !userInfo.isLoggedIn) {
+                alert("請先登入會員再進行結帳！");
+                window.location.href = "./login.html?redirect=checkout";
+                return;
+            }
+
+            // 自動填入會員資料
+            const nameInput = document.getElementById("name");
+            const emailInput = document.getElementById("email");
+            const phoneInput = document.getElementById("phone");
+
+            if (nameInput) nameInput.value = userInfo.name || "";
+            if (emailInput) emailInput.value = userInfo.email || "";
+            if (phoneInput) phoneInput.value = userInfo.phone || "";
+
+            // ========================================
+            // 4. 會員下拉選單
+            // ========================================
+            const openMemberBtn = document.getElementById("openMemberBtn");
+            const memberDropdown = document.getElementById("memberDropdown");
+            const loggedOutView = document.getElementById("loggedOutView");
+            const loggedInView = document.getElementById("loggedInView");
+            const userNameDisplay = document.getElementById("userNameDisplay");
+
+            function checkUserLoginStatus() {
+                const currentUser = getStorageData("user_info", null);
+
+                if (currentUser && currentUser.isLoggedIn) {
+                    if (loggedOutView) {
+                        loggedOutView.style.display = "none";
+                    }
+
+                    if (loggedInView) {
+                        loggedInView.style.display = "block";
+                    }
+
+                    if (userNameDisplay) {
+                        userNameDisplay.textContent = currentUser.name || "會員";
+                    }
+                } else {
+                    if (loggedOutView) {
+                        loggedOutView.style.display = "block";
+                    }
+
+                    if (loggedInView) {
+                        loggedInView.style.display = "none";
+                    }
+                }
+            }
+
+            if (openMemberBtn && memberDropdown) {
+                openMemberBtn.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    checkUserLoginStatus();
+                    memberDropdown.classList.toggle("active");
+                });
+            }
+
+            document.addEventListener("click", function (e) {
+                if (
+                    memberDropdown &&
+                    openMemberBtn &&
+                    !memberDropdown.contains(e.target) &&
+                    !openMemberBtn.contains(e.target)
+                ) {
+                    memberDropdown.classList.remove("active");
+                }
+            });
+
+            // 頁面載入時先確認會員狀態
+            checkUserLoginStatus();
+
+            // ========================================
+            // 5. 取得購物車資料與 DOM
+            // ========================================
+            let cart = getStorageData("cake_cart", []);
+
+            const cartBadge = document.getElementById("cartBadge");
+            const cartItemsList = document.getElementById("cartItemsList");
+            const drawerTotalAmount = document.getElementById("drawerTotalAmount");
+            const cartDrawer = document.getElementById("cartDrawer");
+            const cartOverlay = document.getElementById("cartOverlay");
+            const openCartBtn = document.getElementById("openCartBtn");
+            const closeCartBtn = document.getElementById("closeCartBtn");
+
+            const productListContainer = document.getElementById("checkoutProductList");
+            const subtotalEl = document.getElementById("checkoutSubtotal");
+            const totalEl = document.getElementById("checkoutTotal");
+            const checkoutForm = document.getElementById("checkoutForm");
+            const submitBtn = checkoutForm
+                ? checkoutForm.querySelector('[type="submit"]')
+                : null;
+
+            // ========================================
+            // 6. 開啟與關閉購物車抽屜
+            // ========================================
+            function toggleCart(open) {
+                if (cartDrawer) {
+                    cartDrawer.classList.toggle("active", open);
+                }
+
+                if (cartOverlay) {
+                    cartOverlay.classList.toggle("active", open);
+                }
+
+                if (open) {
+                    updateCartUI();
+                }
+            }
+
+            // 相容目前 HTML 的 onclick="toggleCheckoutCart(false)"
+            window.toggleCheckoutCart = function (open) {
+                toggleCart(open);
+            };
+
+            if (openCartBtn) {
+                openCartBtn.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    toggleCart(true);
+                });
+            }
+
+            if (closeCartBtn) {
+                closeCartBtn.addEventListener("click", function () {
+                    toggleCart(false);
+                });
+            }
+
+            if (cartOverlay) {
+                cartOverlay.addEventListener("click", function () {
+                    toggleCart(false);
+                });
+            }
+
+            // ========================================
+            // 7. 更新購物車徽章、清單與總金額
+            // ========================================
+            function updateCartUI() {
+                if (cartBadge) {
+                    cartBadge.textContent = cart.length;
+                    cartBadge.style.display =
+                        cart.length > 0 ? "flex" : "none";
+                }
+
+                if (cart.length === 0) {
+                    if (cartItemsList) {
+                        cartItemsList.innerHTML =
+                            '<div class="empty-msg">購物車目前是空的</div>';
+                    }
+
+                    if (drawerTotalAmount) {
+                        drawerTotalAmount.textContent = "NT$ 0";
+                    }
+
+                    return;
+                }
+
+                let grandTotal = 0;
+
+                if (cartItemsList) {
+                    cartItemsList.innerHTML = cart.map(function (item, index) {
+                        const price = Number(item.price) || 0;
+                        grandTotal += price;
+
+                        return `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <div class="cart-item-title">客製化蛋糕 (${item.size ? item.size + '吋' : '未指定'})</div>
+                            <div class="cart-item-detail">
+                                口味: ${item.flavor || '預設'} / 風格: ${item.style || '無'} / 顏色: ${item.color || '預設'}<br>
+                                ${item.text ? `標語: "${item.text}"` : '無標語'}
+                            </div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div class="cart-item-price">NT$ ${item.price}</div>
+                            <span class="remove-item" onclick="removeCartItem(${index})" style="cursor:pointer;">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </span>
+                        </div>
+                    </div>
+                    `;
+                    }).join("");
+                } else {
+                    cart.forEach(function (item) {
+                        grandTotal += Number(item.price) || 0;
+                    });
+                }
+
+                if (drawerTotalAmount) {
+                    drawerTotalAmount.textContent =
+                        `NT$ ${grandTotal.toLocaleString()}`;
+                }
+            }
+
+            // ========================================
+            // 8. 渲染結帳頁右側訂單摘要
+            // ========================================
+            function renderCheckoutSummary() {
+                let grandTotal = 0;
+
+                if (!productListContainer) return;
+
+                if (cart.length === 0) {
+                    productListContainer.innerHTML =
+                        '<p class="empty-msg">購物車目前是空的，請返回客製化蛋糕頁選購。</p>';
+
+                    if (subtotalEl) subtotalEl.textContent = "NT$ 0";
+                    if (totalEl) totalEl.textContent = "NT$ 0";
+
+                    // 購物車空時，禁止送出訂單
+                    if (submitBtn) submitBtn.disabled = true;
+
+                    return;
+                }
+
+                if (submitBtn) submitBtn.disabled = false;
+
+                const listHtml = cart.map(function (item) {
+                    const itemPrice = Number(item.price) || 0;
+                    grandTotal += itemPrice;
+
+                    const productImage = item.image
+                        ? `<img src="${escapeHTML(item.image)}"
+                            alt="我的客製化蛋糕"
+                            style="width:100%;height:100%;object-fit:contain;border-radius:8px;">`
+                        : `<img src="./selective-focus-shot-delicious-white-wedding-cake-with-red-berries-flowers-cake-topper.jpg"
+                            alt="客製化蛋糕"
+                            style="width:100%;height:100%;object-fit:cover;border-radius:8px;">`;
+
+                    return `
+                    <div class="order-product">
+                        <div class="product-image"
+                            style="width:80px;height:80px;flex-shrink:0;">
+                            ${productImage}
+                        </div>
+
+                        <div class="product-info" style="flex:1;">
+                            <h3 style="font-size:16px;margin-bottom:4px;">
+                                客製化蛋糕（${escapeHTML(item.size || "預設")}吋）
+                            </h3>
+
+                            <p style="font-size:13px;color:#666;margin:0;">
+                                口味：${escapeHTML(item.flavor || "預設")}<br>
+                                風格：${escapeHTML(item.style || "無")}<br>
+                                顏色：${escapeHTML(item.color || "預設")}
+                                ${item.text
+                            ? `<br>標語："${escapeHTML(item.text)}"`
+                            : ""}
+                            </p>
+                        </div>
+
+                        <div class="product-price"
+                            style="font-weight:bold;font-size:15px;">
+                            NT$ ${itemPrice.toLocaleString()}
+                        </div>
+                    </div>
+                `;
+                }).join("");
+
+                productListContainer.innerHTML = listHtml;
+
+                if (subtotalEl) {
+                    subtotalEl.textContent =
+                        `NT$ ${grandTotal.toLocaleString()}`;
+                }
+
+                if (totalEl) {
+                    totalEl.textContent =
+                        `NT$ ${grandTotal.toLocaleString()}`;
+                }
+            }
+
+            // ========================================
+            // 9. 刪除購物車商品
+            // ========================================
+            window.removeCartItem = function (index) {
+                if (index < 0 || index >= cart.length) return;
+
+                cart.splice(index, 1);
+
+                // 同步更新 localStorage
+                localStorage.setItem("cake_cart", JSON.stringify(cart));
+
+                // 同時更新側邊購物車與右側摘要
+                updateCartUI();
+                renderCheckoutSummary();
+            };
+
+            // ========================================
+            // 10. 跨分頁同步購物車
+            // ========================================
+            window.addEventListener("storage", function (e) {
+                if (e.key === "cake_cart") {
+                    cart = getStorageData("cake_cart", []);
+
+                    updateCartUI();
+                    renderCheckoutSummary();
+                }
+
+                if (e.key === "user_info") {
+                    checkUserLoginStatus();
+                }
+            });
+
+            /* ========================================
+               取貨日期：禁止選擇公休日及未達預訂期限的日期
+            ======================================== */
+            const pickupDateInput = document.getElementById("pickup-data");
+
+            if (pickupDateInput && typeof flatpickr !== "undefined") {
+
+                // 取得今天日期，避免時間影響日期計算
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+
+                // 最早取貨日：今天起算，提前 2 天預訂
+                const minPickupDate = new Date(today);
+                minPickupDate.setDate(minPickupDate.getDate() + 2);
+
+                flatpickr(pickupDateInput, {
+                    dateFormat: "Y-m-d",
+                    minDate: minPickupDate,
+                    disableMobile: true,
+
+                    // 週日（0）、週一（1）禁止選取
+                    disable: [
+                        function (date) {
+                            return date.getDay() === 0 ||
+                                date.getDay() === 1;
+                        }
+                    ],
+
+                    // 選取日期後的檢查
+                    onChange: function (selectedDates, dateStr) {
+                        if (!dateStr) return;
+
+                        console.log("選擇的取貨日期：", dateStr);
+                    }
+                });
+            }
+            // ========================================
+            // 11. 手機載具欄位顯示與隱藏
+            // ========================================
+            const invoiceSelect = document.getElementById("invoice");
+            const barcodeGroup = document.getElementById("barcodeGroup");
+            const barcodeInput = document.getElementById("barcode");
+
+            function toggleBarcode() {
+                if (!invoiceSelect || !barcodeGroup) return;
+
+                const isMobileInvoice = invoiceSelect.value === "mobile";
+
+                barcodeGroup.style.display =
+                    isMobileInvoice ? "block" : "none";
+
+                if (barcodeInput) {
+                    barcodeInput.required = isMobileInvoice;
+
+                    if (!isMobileInvoice) {
+                        barcodeInput.value = "";
+                    }
+                }
+            }
+
+            if (invoiceSelect) {
+                invoiceSelect.addEventListener("change", toggleBarcode);
+                toggleBarcode();
+            }
+
+            // ========================================
+            // 12. 初始化購物車與訂單摘要
+            // ========================================
+            updateCartUI();
+
+            if (cart.length === 0) {
+                alert("您的購物車是空的，將為您導回商品頁！");
+                window.location.href = "./customizeCake.html";
+                return;
+            }
+
+            renderCheckoutSummary();
+
+            // ========================================
+            // 13. 送出預訂並儲存訂單
+            // ========================================
+            if (checkoutForm) {
+                checkoutForm.addEventListener("submit", function (e) {
+                    e.preventDefault();
+
+                    // 再次確認登入狀態
+                    const currentUser = getStorageData("user_info", null);
+
+                    if (!currentUser || !currentUser.isLoggedIn) {
+                        alert("登入狀態已失效，請重新登入！");
+                        window.location.href = "./login.html?redirect=checkout";
+                        return;
+                    }
+
+                    if (cart.length === 0) {
+                        alert("購物車是空的，無法送出訂單！");
+                        return;
+                    }
+
+                    // 計算訂單總金額
+                    const grandTotal = cart.reduce(function (total, item) {
+                        return total + (Number(item.price) || 0);
+                    }, 0);
+
+                    // 建立訂單資料
+                    const orderData = {
+                        orderId: "MC" + Date.now(),
+
+                        customer: {
+                            name: document.getElementById("name").value.trim(),
+                            email: document.getElementById("email").value.trim(),
+                            phone: document.getElementById("phone").value.trim()
+                        },
+
+                        pickupDate: document.getElementById("pickup-data").value,
+                        payment: document.getElementById("payment").value,
+                        invoice: document.getElementById("invoice").value,
+                        barcode: document.getElementById("barcode").value.trim(),
+
+                        item: cart.map(function (item) {
+                            return { ...item };
+                        }),
+
+                        totalAmount: grandTotal,
+                        createdAt: new Date().toLocaleString()
+                    };
+
+                    // 將訂單存入 localStorage
+                    const orders = getStorageData("cake_orders", []);
+
+                    orders.push(orderData);
+
+                    try {
+                        localStorage.setItem("cake_orders", JSON.stringify(orders));
+                        localStorage.removeItem("cake_cart");
+                    } catch (error) {
+                        console.error("儲存訂單失敗：", error);
+                        alert("訂單儲存失敗，請確認瀏覽器儲存空間後再試。");
+                        return;
+                    }
+
+                    // 更新目前頁面的購物車顯示
+                    cart = [];
+                    updateCartUI();
+                    renderCheckoutSummary();
+
+                    alert(
+                        "預訂成功！感謝您的訂購，訂單編號：" +
+                        orderData.orderId
+                    );
+
+                    window.location.href = "./index.html";
+                });
+            }
+
+        });
+    </script>
+</body>
+
+</html>
